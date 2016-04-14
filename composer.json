@@ -1,0 +1,22 @@
+{
+    "name": "ebbe/depvel",
+    "description": "Deploy Laravel applications effortless.",
+    "license": "MIT",
+    "keywords": ["laravel", "deployment", "git", "ssh"],
+    "authors": [
+        {
+            "name": "Esben Damgaard",
+            "email": "esben@hvemder.dk",
+            "homepage": "http://hvemder.dk"
+        }
+    ],
+    "require": {
+        "php": ">=5.5.0",
+        "illuminate/config": "5.*",
+    },
+    "autoload": {
+        "psr-0": {
+            "Ebbe\\Depvel": "src/"
+        }
+    }
+}
