@@ -15,8 +15,9 @@
         "illuminate/config": "5.*"
     },
     "autoload": {
-        "psr-0": {
+        "psr-4": {
             "Ebbe\\Depvel": "src/"
         }
-    }
+    },
+    "minimum-stability": "stable"
 }
