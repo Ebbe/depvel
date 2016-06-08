@@ -12,7 +12,8 @@
     ],
     "require": {
         "php": ">=5.5.0",
-        "illuminate/config": "5.*"
+        "illuminate/config": "5.*",
+        "laravelcollective/remote": "5.2.*"
     },
     "autoload": {
         "psr-0": {
