@@ -14,5 +14,13 @@ class Depvel extends Command {
 
             $this->line('Available subcommands: help,deploy');
         }
+        $this->list_configurations();
+    }
+
+    private function list_configurations() {
+        $this->line('Configurations:');
+        foreach(array_keys(config('depvel.configurations')) as $configuration) {
+            $this->line('  '.$configuration);
+        }
     }
 }

@@ -13,7 +13,6 @@ class DepvelServiceProvider extends ServiceProvider {
 
 	public function register() {
 		$commands = [
-			'Ebbe\Depvel\Commands\Help',
 			'Ebbe\Depvel\Commands\Depvel'
 		];
 		$this->commands($commands);
