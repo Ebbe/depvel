@@ -3,7 +3,7 @@
 use Illuminate\Support\ServiceProvider;
 
 class DepvelServiceProvider extends ServiceProvider {
-	protected $defer = true;
+	protected $defer = false;
 
 	public function boot() {
 		$this->publishes([
