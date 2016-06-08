@@ -2,6 +2,7 @@
 namespace Ebbe\Depvel\Commands;
 
 use Illuminate\Console\Command;
+use Collective\Remote\Connection;
 
 class Depvel extends Command {
     protected $signature = 'depvel {subcommand=help} {environment?}';
@@ -15,7 +16,11 @@ class Depvel extends Command {
             $this->line('Available subcommands: help,deploy');
         }
         $this->list_configurations();
+
+        $n = new Connection('name', 'test.bonsailog.com', 'ebbe', array('key'=>$_SERVER['HOME'].'/.ssh/id_rsa'));
+        $n->run('ls', function($line,$connection) {$this->info($line);});
     }
+
 
     private function list_configurations() {
         $this->line('Configurations:');
