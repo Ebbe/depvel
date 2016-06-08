@@ -16,7 +16,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Ebbe\\Depvel": "src/"
+            "Ebbe\\Depvel\\": "src/"
         }
     },
     "minimum-stability": "stable"
