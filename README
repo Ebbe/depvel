@@ -1,0 +1,4 @@
+How to install and run
+
+Get config file
+php artisan vendor:publish --provider="Ebbe\Depvel\DepvelServiceProvider"
