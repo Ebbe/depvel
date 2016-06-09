@@ -3,7 +3,14 @@
 return array(
     'common_config' => array(
         'git_location' => 'reacable_gitlocation_from_server.git',
-        'git_branch' => 'master'
+        'git_branch' => 'master',
+        'shared_dirs' => [
+            'storage'
+        ],
+        'shared_files' => [
+            '.env'
+        ],
+        'keep_releases' => 5
     ),
 
     /*
@@ -22,7 +29,8 @@ return array(
             'host' => 'yourdomain.com',
             'user' => 'root', // Don't use root login in real life
             'password' => null,
-            'port' => 22
+            'port' => 22,
+            'custom_key' => null
         )
     ),
 
