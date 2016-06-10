@@ -21,7 +21,7 @@ class Deploy {
         $this->_connect_to_server();
         $path_exists = $this->_does_path_exist();
         if($path_exists==false) {
-            if($this->command->confirm('The path on the server does not exist yet. Should I set set everything up?')==false)
+            if($this->command->confirm('The path on the server does not exist yet. Should I set everything up?')==false)
                 return;
             else // TODO: Check status of first_time_run
                 $this->_first_time_run();
@@ -97,19 +97,20 @@ class Deploy {
         $this->_run('unlink current; ln -s '.$this->release_path.' current');
 
         $this->_setup_shared_folder();
+        $this->_run_release('chmod a+wr -R public'); // TODO: Should probably not be done this way..
+        $this->_run_release('chmod a+wr -R storage');
     }
 
     private function _setup_laravel() {
         $composer_command = 'composer install';
         if($this->configuration['development']==false)
             $composer_command .= ' --no-dev';
-        $this->_run_release($composer_command); // TODO: Listen for errors. Especially included providers, which can be helped
+        $this->_run_release($composer_command); // TODO: Listen for errors
 
         $this->_run_release('php artisan migrate');
     }
 
-    private function _setup_shared_folder()
-    {
+    private function _setup_shared_folder() {
         foreach ($this->configuration['shared_dirs'] as $dir) {
             $this->_run('mkdir -p ' . $this->root_path . 'shared/' . $dir); # Make sure it exists
             $this->_run_release('ln -s '.$this->root_path.'shared/'.$dir.' '. $dir);
