@@ -45,6 +45,7 @@ class Deploy {
         } catch(\Exception $e) {
             $this->command->error('Deployment failed!');
             $this->command->error($e->getMessage());
+            // TODO: Clean up failed folder
         }
     }
 
@@ -132,10 +133,10 @@ class Deploy {
             throw new \Exception('"'.$composer_command.'" failed with: '.$result);
         }
 
-        $this->command->line('   - Running php artisan migrate');
-        $result = $this->_run_release('php: artisan migrate', $status);
+        $this->command->line('   - Running: php artisan migrate --force');
+        $result = $this->_run_release('php artisan migrate --force', $status);
         if($status > 0) {
-            throw new \Exception('"php artisan migrate" failed with: '.$result);
+            throw new \Exception('"php artisan migrate --force" failed with: '.$result);
         }
     }
 
