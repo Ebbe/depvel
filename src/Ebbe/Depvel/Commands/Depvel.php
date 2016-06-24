@@ -10,22 +10,24 @@ class Depvel extends Command {
     protected $description = 'Main entrance to Depvel';
 
     public function fire() {
-        if($this->argument('subcommand')=='help') {
-        }
         switch($this->argument('subcommand')) {
             case 'help':
-                $this->sub_help();
+                return $this->sub_help();
                 break;
             case 'deploy':
-                $this->sub_deploy();
+                return $this->sub_deploy();
                 break;
         }
+
+        return 1;
     }
 
     private function sub_help() {
         $this->line('√ Help is on its way');
         $this->line('Available subcommands: help,deploy'."\n");
         $this->list_configurations();
+
+        return 0;
     }
 
     private function sub_deploy() {
@@ -52,7 +54,7 @@ class Depvel extends Command {
 
         $this->info('Deploying to '.$this->argument('configuration'));
         $deploy = new Deploy($this->argument('configuration'), $configuration, $this);
-        $deploy->run();
+        return $deploy->run();
     }
 
     private function list_configurations() {

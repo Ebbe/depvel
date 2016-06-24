@@ -19,6 +19,7 @@ class Deploy {
 
     public function run() {
         try {
+            $this->command->line(' * Connecting to server');
             $this->_connect_to_server();
             $path_exists = $this->_does_path_exist();
             if ($path_exists == false) {
@@ -42,10 +43,12 @@ class Deploy {
 
             $this->command->line(' * Managing releases');
             $this->_manage_release_paths();
+            return 0;
         } catch(\Exception $e) {
             $this->command->error('Deployment failed!');
             $this->command->error($e->getMessage());
             // TODO: Clean up failed folder
+            return 99;
         }
     }
 
