@@ -110,7 +110,9 @@ class Deploy {
             $this->command->line('   - Removing old releases. Keeping '.$this->configuration['keep_releases'].' of total '.$current_number_of_releases);
             for($i=$current_number_of_releases; $i > $this->configuration['keep_releases']; $i--) {
                 $oldest_dir = $this->_run('ls releases|head -n 1');
-                $this->_run('rm -rf releases/'.$oldest_dir);
+                $output = $this->_run('rm -rf releases/'.$oldest_dir, null, $status);
+                if($status > 0)
+                    throw new \Exception('Could not delete folder in releases/'.$oldest_dir.'. Error: '.$output);
             }
         }
     }
