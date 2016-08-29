@@ -2,3 +2,7 @@ How to install and run
 
 Get config file
 php artisan vendor:publish --provider="Ebbe\Depvel\DepvelServiceProvider"
+
+Installation
+Require in composer (//TODO)
+In config/app.php add in 'providers': Ebbe\Depvel\DepvelServiceProvider::class
