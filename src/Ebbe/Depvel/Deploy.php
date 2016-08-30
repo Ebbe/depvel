@@ -143,6 +143,12 @@ class Deploy {
         if($status > 0) {
             throw new \Exception('"php artisan migrate --force" failed with: '.$result);
         }
+
+        $this->command->line('   - Running: composer dump-autoload --optimize');
+        $result = $this->_run_release('composer dump-autoload --optimize', $status);
+        if($status > 0) {
+            throw new \Exception('"composer dump-autoload --optimize" failed with: '.$result);
+        }
     }
 
     private function _setup_shared_folder() {
