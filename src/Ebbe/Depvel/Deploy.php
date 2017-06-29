@@ -118,7 +118,7 @@ class Deploy {
     }
 
     private function _checkout_code() {
-        $git_command = 'git clone -b '.$this->configuration['git_branch'].' '.$this->configuration['git_location'].' '.$this->release_path;
+        $git_command = 'git clone --depth=1 -b '.$this->configuration['git_branch'].' '.$this->configuration['git_location'].' '.$this->release_path;
         $this->command->line('   - Running: '.$git_command);
         $this->_run($git_command);
 
